@@ -1,0 +1,26 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  align-items: center;
+  background-color: rgb(239, 239, 239);
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  flex: 1 0 100%;
+  width: 60rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+}

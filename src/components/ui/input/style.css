@@ -1,0 +1,14 @@
+.input {
+  border: 2px solid rgb(68, 68, 68);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.35rem 0.5rem;
+  width: 100%;
+}
+
+.input:invalid {
+  border-color: rgb(68, 68, 68);
+  box-shadow: 0;
+  outline: none;
+}

@@ -1,0 +1,107 @@
+.you-draw-it {
+  margin: 30px 0 20px 0;
+  position: relative;
+  overflow: hidden;
+  max-width: 600px;
+}
+
+.labels {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  user-select: none;
+}
+
+.data-label {
+  position: absolute;
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+
+.area {
+  fill: rgb(240, 240, 240);
+}
+
+.data-label span {
+  position: relative;
+  margin-top: -43px;
+  left: -50%;
+  padding: 5px 15px;
+  color: white;
+  display: block;
+  text-align: center;
+  line-height: 16px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.data-label.edge-left span {
+  left: -10px;
+}
+
+.data-label.edge-right span {
+  left: auto;
+  right: 86%;
+}
+
+.data-label.black span {
+  background-color: black;
+}
+
+.data-label.red span {
+  background-color: red;
+}
+
+.data-label.your-result span {
+  background-color: blue;
+}
+
+.your-line {
+  stroke: blue;
+  stroke-width: 4;
+  stroke-dasharray: 1 7;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.grid .domain {
+  stroke-width: 0
+}
+
+.grid .tick line {
+  stroke-dasharray: 1,1;
+  opacity: 0.2;
+}
+
+.line {
+  fill: none;
+  stroke-width: 3;
+  stroke: black;
+}
+
+.line.red {
+  stroke: red;
+}
+
+.axis {
+  opacity: .5;
+}
+
+.axis text {
+  font-size: 10px;
+}
+
+.dots circle {
+  transition: opacity 0.3s;
+}
+
+.dots.black {
+  fill: black;
+}
+
+.dots.red {
+  fill: red;
+}
