@@ -51,16 +51,16 @@ const parseData = data => {
 
 const Step1 = () => (
   <>
-    <Input name="name" label="Name des Datensets" required />
+    <Input name="name" label="Name des Datensets" explain="Der Name sollte einmalig pro Artikel vorkommen" required />
     <Textarea name="data" label="Daten" explain="Einen Eintrag pro Zeile" placeholder="2019 100" rows={10} monospace required />
     <Input name="yUnit" label="Einheit der Y-Achse" required />
     <Textarea name="revealText" label="Text" explain="Text, der angezeigt werden soll, nachdem das Diagramm fertig gezeichnet wurde" rows={5} required />
-    <Input name="buttonLabel" label="Button Beschriftung" required />
+    <Input name="buttonLabel" label="Button Beschriftung" explain="Beschriftung des Buttons, welcher am Ende die realen Daten anzeigt" required />
   </>
 );
 
 const Step2 = ({ data }) => (
-  <Select name="truncateAt" required label="Diagramm zeichnen bis">
+  <Select name="truncateAt" required label="Diagramm sichtbar bis (x Achse)">
     {Object.entries(data).map(([value]) => (
       <option value={value}>{value}</option>
     ))}
