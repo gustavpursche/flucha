@@ -53,8 +53,8 @@ const Step1 = () => (
   <>
     <Input name="name" label="Name des Datensets" required />
     <Textarea name="data" label="Daten" explain="Einen Eintrag pro Zeile" placeholder="2019 100" rows={10} monospace required />
-    <Input name="unitY" label="Einheit der Y-Achse" required />
-    <Textarea name="reveal" label="Text" explain="Text, der angezeigt werden soll, nachdem das Diagramm fertig gezeichnet wurde" rows={5} required />
+    <Input name="yUnit" label="Einheit der Y-Achse" required />
+    <Textarea name="revealText" label="Text" explain="Text, der angezeigt werden soll, nachdem das Diagramm fertig gezeichnet wurde" rows={5} required />
     <Input name="buttonLabel" label="Button Beschriftung" required />
   </>
 );
@@ -67,19 +67,18 @@ const Step2 = ({ data }) => (
   </Select>
 );
 
-const Snippet = ({ data, name, mediaYear, snipped }) => (
+const Snippet = ({ snipped, ...props }) => (
   <>
     <h2>Preview</h2>
 
-    <Chart data={data} name={parseName(name)} medianYear={mediaYear} />
+    <Chart {...props} />
 
     <h2>Prepare the article</h2>
     <p>Add the following snippet at the beginning of your article</p>
 
     <pre>
-      {`
+{`
 <script src="/sites/all/libraries/d3/d3.min.js"></script>
-<style type="text/css">.some-style {}</style>
 `}
     </pre>
 
@@ -131,12 +130,12 @@ export default () => {
         )}
 
         {step === 2 && (
-          <Snippet data={parseData(dataset.data)} name={dataset.name} mediaYear={dataset.truncateAt} snippet={`
+          <Snippet data={parseData(dataset.data)} name={parseName(dataset.name)} medianYear={dataset.truncateAt} snippet={`
             <div class="media media-element-container media-default">
               <div class="js-chart--you-draw-it" data-chart-name="${parseName(dataset.name)}" data-chart-data='${JSON.stringify(parseData(dataset.data))}' data-chart-button-label="${dataset.buttonLabel}" data-chart-truncate="${dataset.truncateAt}"></div>
-              <p>${dataset.reveal}</p>
+              <p>${dataset.revealText}</p>
             </div>
-          `} />
+          `} yUnit={dataset.yUnit} buttonLabel={dataset.buttonLabel} />
         )}
       </form>
     </div>

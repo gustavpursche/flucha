@@ -5,11 +5,8 @@ const state = {};
 export default (el, result) => {
   const sel = d3.select(el);
   const { dataset } = el;
-  const { chartData, chartName: key, chartMedianYear } = dataset;
+  const { chartData, chartName: key, chartMedianYear, chartYUnit } = dataset;
   const medianYear = parseInt(chartMedianYear, 10);
-  const question = {
-    unit: '%'
-  };
   const indexedData = JSON.parse(chartData);
   const data = Object.keys(indexedData).map(key => {
       return {
@@ -84,7 +81,7 @@ export default (el, result) => {
 
   const formatValue = function(val, defaultPrecision) {
       const data = defaultPrecision ? Number(val).toFixed(defaultPrecision) : val;
-      return String(data).replace('.', ',') + (question.unit ? ' ' + question.unit : '');
+      return String(data).replace('.', ',') + (chartYUnit ? ' ' + chartYUnit : '');
   };
 
   const makeLabel = function (pos, addClass) {
