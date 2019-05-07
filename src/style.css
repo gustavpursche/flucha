@@ -15,12 +15,16 @@ body {
 }
 
 .app {
+  background-color: white;
   flex: 1 0 100%;
+  padding: 1.5rem;
   width: 60rem;
 }
 
-.title {
-  font-size: 1.75rem;
+.steps {
+  font-size: 1.25rem;
   font-weight: 900;
   margin-bottom: 1.5rem;
+  margin-top: 0;
+  text-transform: uppercase;
 }

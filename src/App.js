@@ -9,14 +9,13 @@ import Textarea from './components/ui/textarea';
 
 import './style.css';
 
-const onSubmit = (form, setData) => {
+const formData = form => {
   const formData = new FormData(form);
-  const data = Array.from(formData.entries()).reduce((acc, [key, value]) => {
+
+  return Array.from(formData.entries()).reduce((acc, [key, value]) => {
     acc[key] = value;
     return acc;
   }, {});
-
-  setData(data);
 };
 
 const parseName = name => {
@@ -50,74 +49,95 @@ const parseData = data => {
   }, {});
 };
 
+const Step1 = () => (
+  <>
+    <Input name="name" label="Name des Datensets" required />
+    <Textarea name="data" label="Daten" explain="Einen Eintrag pro Zeile" placeholder="2019 100" rows={10} monospace required />
+    <Input name="unitY" label="Einheit der Y-Achse" required />
+    <Textarea name="reveal" label="Text" explain="Text, der angezeigt werden soll, nachdem das Diagramm fertig gezeichnet wurde" rows={5} required />
+    <Input name="buttonLabel" label="Button Beschriftung" required />
+  </>
+);
+
+const Step2 = ({ data }) => (
+  <Select name="truncateAt" required label="Diagramm zeichnen bis">
+    {Object.entries(data).map(([value]) => (
+      <option value={value}>{value}</option>
+    ))}
+  </Select>
+);
+
+const Snippet = ({ data, name, mediaYear, snipped }) => (
+  <>
+    <h2>Preview</h2>
+
+    <Chart data={data} name={parseName(name)} medianYear={mediaYear} />
+
+    <h2>Prepare the article</h2>
+    <p>Add the following snippet at the beginning of your article</p>
+
+    <pre>
+      {`
+<script src="/sites/all/libraries/d3/d3.min.js"></script>
+<style type="text/css">.some-style {}</style>
+`}
+    </pre>
+
+    <h3>Add chart</h3>
+    <p>Add the following snippet at the location, where you want the
+      render the chart.
+    </p>
+
+    <pre>
+      {snipped}
+    </pre>
+  </>
+);
+
 export default () => {
   const form = useRef(null);
-  const [dataset, setData] = useState(null);
-  const parsedData = parseData(dataset && dataset.data);
-  const isComplete = dataset && dataset.truncateAt;
-  let snipped;
-
-  if (isComplete) {
-    snipped = `
-<div class="media media-element-container media-default">
-  <div class="js-chart--you-draw-it" data-chart-name="${parseName(dataset.name)}" data-chart-data='${JSON.stringify(parsedData)}' data-chart-button-label="${dataset.buttonLabel}" data-chart-truncate="${dataset.truncateAt}"></div>
-  <p>${dataset.reveal}</p>
-</div>
-    `;
-  }
+  const [dataset, setData] = useState({});
+  const [step, setStep] = useState(0);
 
   return (
     <div className="app">
-      <form ref={form} onSubmit={event => {
-        event.preventDefault();
-        onSubmit(form.current, setData);
-      }}>
-        <h1 className="title">Draw me! Generator</h1>
+      <form ref={form}>
+        <h2 className="steps">Step {step + 1} / 3</h2>
 
-        <Input name="name" label="Name of the dataset" required />
-        <Textarea name="data" label="Data" rows={10} monospace required />
-        <Input name="unitY" label="Unit (y axis)" required />
-        <Textarea name="reveal" label="Text to reveal" rows={5} required />
-        <Input name="buttonLabel" label="Button label" required />
-
-        {dataset && (
-          <Select name="truncateAt" required label="Truncate chart at">
-            {Object.entries(parsedData).map(([value]) => (
-              <option value={value}>{value}</option>
-            ))}
-          </Select>
+        {step === 0 && (
+          <>
+            <Step1 />
+            <Button type="button" onClick={() => {
+              setStep(1);
+              setData(state => ({
+                ...state,
+                ...formData(form.current)
+              }));
+            }}>Next Step</Button>
+          </>
         )}
 
-        <Button type="submit">Generate Snippet</Button>
+        {step === 1 && (
+          <>
+            <Step2 data={parseData(dataset.data)} />
+            <Button type="button" onClick={() => {
+              setStep(2);
+              setData(state => ({
+                ...state,
+                ...formData(form.current)
+              }));
+            }}>Generate Preview</Button>
+          </>
+        )}
 
-        <div>
-          {isComplete && (
-            <>
-              <h2>Preview</h2>
-
-              <Chart data={parsedData} name={parseName(dataset.name)} medianYear={dataset.truncateAt} />
-
-              <h2>Prepare the article</h2>
-              <p>Add the following snippet at the beginning of your article</p>
-
-              <pre>
-                {`
-  <script src="/sites/all/libraries/d3/d3.min.js"></script>
-  <style type="text/css">.some-style {}</style>
-  `}
-              </pre>
-
-              <h3>Add chart</h3>
-              <p>Add the following snippet at the location, where you want the
-                render the chart.
-              </p>
-
-              <pre>
-                {snipped}
-              </pre>
-            </>
-          )}
-        </div>
+        {step === 2 && (
+          <Snippet data={parseData(dataset.data)} name={dataset.name} mediaYear={dataset.truncateAt} snippet={`
+            <div class="media media-element-container media-default">
+              <div class="js-chart--you-draw-it" data-chart-name="${parseName(dataset.name)}" data-chart-data='${JSON.stringify(parseData(dataset.data))}' data-chart-button-label="${dataset.buttonLabel}" data-chart-truncate="${dataset.truncateAt}"></div>
+              <p>${dataset.reveal}</p>
+            </div>
+          `} />
+        )}
       </form>
     </div>
   );

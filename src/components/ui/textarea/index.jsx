@@ -4,8 +4,8 @@ import Label from '../label';
 
 import './style.css';
 
-export default ({ label, monospace = false, ...attributes }) => (
-  <Label text={label}>
+export default ({ label, explain, monospace = false, ...attributes }) => (
+  <Label text={label} explain={explain}>
     <textarea className={`textarea ${monospace && 'textarea--monospace'}`} {...attributes} />
   </Label>
 );

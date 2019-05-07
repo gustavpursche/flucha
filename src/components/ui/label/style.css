@@ -6,8 +6,18 @@
   display: block;
   font-size: 0.8rem;
   font-weight: 700;
-  margin-bottom: 0.25rem;
+  line-height: 1;
   text-transform: uppercase;
+}
+
+.label__explain {
+  font-size: 0.7rem;
+  font-weight: 200;
+  line-height: 1;
+}
+
+.label__children-container {
+  margin-top: 0.25rem;
 }
 
 .label + .label {

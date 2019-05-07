@@ -4,8 +4,8 @@ import Label from '../label';
 
 import './style.css';
 
-export default ({ label, type = 'text', ...attributes }) => (
-  <Label text={label}>
+export default ({ label, explain, type = 'text', ...attributes }) => (
+  <Label text={label} explain={explain}>
     <input type={type} className="input" {...attributes} />
   </Label>
 );

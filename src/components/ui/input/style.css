@@ -1,5 +1,6 @@
 .input {
   border: 2px solid rgb(68, 68, 68);
+  border-radius: 0.3rem;
   font-family: inherit;
   font-size: 0.9rem;
   font-weight: 500;
