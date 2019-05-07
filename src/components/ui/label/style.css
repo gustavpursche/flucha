@@ -17,9 +17,9 @@
 }
 
 .label__children-container {
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
 }
 
 .label + .label {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }

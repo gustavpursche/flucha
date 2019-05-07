@@ -2,7 +2,6 @@
   margin: 30px 0 20px 0;
   position: relative;
   overflow: hidden;
-  max-width: 600px;
 }
 
 .labels {
@@ -60,7 +59,7 @@
 }
 
 .your-line {
-  stroke: blue;
+  stroke: black;
   stroke-width: 4;
   stroke-dasharray: 1 7;
   stroke-linecap: round;
@@ -82,8 +81,9 @@
   stroke: black;
 }
 
+/* the actual result */
 .line.red {
-  stroke: red;
+  stroke: black;
 }
 
 .axis {
@@ -94,14 +94,10 @@
   font-size: 10px;
 }
 
-.dots circle {
-  transition: opacity 0.3s;
-}
-
-.dots.black {
+.dots {
   fill: black;
 }
 
-.dots.red {
-  fill: red;
+.dots circle {
+  transition: opacity 0.3s;
 }

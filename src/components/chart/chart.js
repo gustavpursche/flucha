@@ -19,21 +19,9 @@ export default (el, result) => {
       state[key] = {};
   }
 
-  if (data.length < 1) {
-      console.log("No data available for:", key);
-      return;
-  }
-
   const isMobile = window.innerWidth < 760;
-
   const minYear = data[0].year;
   const maxYear = data[data.length - 1].year;
-  const periods = [
-      {year: 1991, class: 'black', title: "Amtszeit\nJürgen Rüttgers"},
-      {year: 1992, class: 'red', title: "I. Amtszeit\nHannelore Kraft"},
-      {year: Math.min(1992, maxYear), class: 'red', title: "II. Amtszeit\nHannelore Kraft"}
-  ];
-
   const minY = d3.min(data, d => d.value);
   const maxY = d3.max(data, d => d.value);
 
