@@ -1,3 +1,7 @@
+:root {
+  --border-color: rgb(174, 174, 174);
+}
+
 *,
 *::after,
 *::before {
@@ -22,9 +26,35 @@ body {
 }
 
 .steps {
-  font-size: 1.25rem;
+  border-bottom: 3px solid black;
+  font-size: 1.5rem;
   font-weight: 900;
   margin-bottom: 1.5rem;
   margin-top: 0;
+  padding-bottom: 0.75rem;
   text-transform: uppercase;
+}
+
+.code {
+  background: rgb(248, 248, 248);
+  border: 1px solid rgb(240, 240, 240);
+  border-radius: 0.35rem;
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  margin: 1.5rem 0;
+  padding: 0.75rem;
+}
+
+.preview__section-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  margin-bottom: 0;
+  margin-top: 2.5rem;
+}
+
+.preview__section-title + p {
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-top: 0.35rem;
 }

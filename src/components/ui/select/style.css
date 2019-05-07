@@ -1,9 +1,13 @@
 .select {
   appearance: none;
-  border: 2px solid rgb(68, 68, 68);
+  border: 2px solid var(--border-color);
   font-family: inherit;
   font-size: 0.9rem;
   font-weight: 500;
   padding: 0.35rem 0.5rem;
   width: 100%;
+}
+
+.select:focus {
+  border-color: black;
 }

@@ -1,6 +1,6 @@
 .textarea {
-  border: 2px solid rgb(68, 68, 68);
-  border-radius: 0.3rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.2rem;
   font-family: inherit;
   font-size: 0.9rem;
   font-weight: 500;
@@ -12,8 +12,6 @@
   font-family: monospace;
 }
 
-.textarea:invalid {
-  border-color: rgb(68, 68, 68);
-  box-shadow: none;
-  outline: none;
+.textarea:focus {
+  border-color: black;
 }

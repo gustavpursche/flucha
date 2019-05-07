@@ -4,7 +4,7 @@ import createChart from './chart';
 
 import './style.css';
 
-export default ({ data, name, medianYear, yUnit, buttonLabel }) => {
+export default ({ data, name, truncateAt, yUnit, buttonLabel }) => {
   const chart = useRef(null);
   const result = useRef(null);
 
@@ -20,7 +20,7 @@ export default ({ data, name, medianYear, yUnit, buttonLabel }) => {
            ref={chart}
            data-chart-name={name}
            data-chart-data={JSON.stringify(data)}
-           data-chart-median-year={medianYear}
+           data-chart-median-year={truncateAt}
            data-chart-y-unit={yUnit} />
       <div ref={result}>
         <button type="button" disabled>{buttonLabel}</button>
