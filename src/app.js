@@ -30,7 +30,7 @@ const parseData = data => {
   const lines = data.split('\n');
 
   return lines.reduce((acc, line) => {
-    const items = line.trim().split(' ');
+    const items = line.trim().split(',');
 
     if (!items) {
       return acc;
@@ -52,7 +52,7 @@ const parseData = data => {
 const Step1 = ({ data }) => (
   <>
     <Input name="name" defaultValue={data.name} label="Name des Datensets" explain="Der Name sollte einmalig pro Artikel vorkommen" />
-    <Textarea name="data" defaultValue={data.data} label="Daten" explain="Ein Eintrag pro Zeile" placeholder="2019 100" rows={10} monospace />
+    <Textarea name="data" defaultValue={data.data} label="Daten" explain="Ein Eintrag pro Zeile" placeholder="2019,100" rows={10} monospace />
     <Input name="yUnit" defaultValue={data.yUnit} label="Einheit der Y-Achse" explain="Optional" />
     <Textarea name="revealText" defaultValue={data.revealText} label="Text" explain="Text, der angezeigt werden soll, nachdem das Diagramm fertig gezeichnet wurde" rows={5} />
     <Input name="buttonLabel" defaultValue={data.buttonLabel} label="Button Beschriftung" explain="Beschriftung des Buttons, welcher am Ende die realen Daten anzeigt" />

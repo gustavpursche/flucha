@@ -9,20 +9,24 @@
 }
 
 body {
-  align-items: center;
   background-color: rgb(239, 239, 239);
   font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
   margin: 0;
   padding: 0;
+}
+
+#root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .app {
   background-color: white;
   flex: 1 0 100%;
+  max-width: 60rem;
   padding: 1.5rem;
-  width: 60rem;
+  width: 100%;
 }
 
 .steps {
