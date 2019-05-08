@@ -308,22 +308,20 @@ export default (el, result) => {
   c.svg.on('click', interactionHandler);
 
   const showResultChart = function () {
-      if(!state[key].completed) {
-          return;
-      }
+    if(!state[key].completed) {
+      return;
+    }
 
-      state[key].resultShown = true;
+    state[key].resultShown = true;
 
-      resultClip.transition()
-          .duration(700)
-          .attr('width', c.x(maxYear));
+    resultClip.transition()
+      .duration(700)
+      .attr('width', c.x(maxYear));
 
-      dragArea.attr('class', '');
+    dragArea.attr('class', '');
 
-      setTimeout(() => {
-          resultLabel.map(e => e.style('opacity', 1));
-          resultSection.node().classList.add('you-draw-it__result--result-shown');
-      }, 700);
+    resultLabel.map(e => e.style('opacity', 1));
+    resultSection.node().classList.add('you-draw-it__result--result-shown');
   };
 
   resultSection.select('button').on('click', showResultChart);
