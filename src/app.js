@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import slugify from 'slugify';
 
 import Button from './components/ui/button';
 import Chart from './components/chart';
@@ -16,10 +15,6 @@ const formData = form => {
     acc[key] = value;
     return acc;
   }, {});
-};
-
-const parseName = name => {
-  return slugify(name);
 };
 
 const parseData = data => {
