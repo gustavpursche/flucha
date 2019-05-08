@@ -55,7 +55,7 @@ const Step1 = ({ data }) => (
     <Textarea
       name="data"
       defaultValue={data.data}
-      label="Daten"
+      label="Datensatz"
       explain="Ein Eintrag pro Zeile"
       placeholder="2019,100"
       rows={10}
@@ -108,6 +108,10 @@ const Snippet = ({ data, parsedData }) => (
     <code className="code">
       {`
 <script src="/sites/all/libraries/d3/d3.min.js"></script>
+<style type="text/css"></style>
+<script>
+  const youDrawIt = el => {};
+</script>
 `}
     </code>
 
@@ -120,15 +124,15 @@ const Snippet = ({ data, parsedData }) => (
     <code className="code">
       {`
 <div class="media media-element-container media-default you-draw-it js-chart--you-draw-it">
-  <div className="you-draw-it__chart"
+  <div class="you-draw-it__chart"
        data-chart-name="${data.name}"
        data-chart-data='${JSON.stringify(parsedData)}'
        data-chart-median-year="${data.truncateAt}"
-       data-chart-y-unit="${data.yUnit}" />
+       data-chart-y-unit="${data.yUnit}"></div>
 
-  <div className="you-draw-it__result">
-    <Button disabled>${data.buttonLabel}</Button>
-    <p className="you-draw-it__result-text">${data.revealText}</p>
+  <div class="you-draw-it__result">
+    <button class="you-draw-it__button" disabled>${data.buttonLabel}</button>
+    <p class="you-draw-it__result-text">${data.revealText}</p>
   </div>
 </div>
 `}
@@ -143,7 +147,7 @@ const Snippet = ({ data, parsedData }) => (
     <code className="code">
       {`
 <script>
-  Array.from(document.querySelectorAll('.js-chart--you-draw-it'), initChart);
+  Array.from(document.querySelectorAll('.js-chart--you-draw-it'), youDrawIt);
 </script>
 `}
     </code>
