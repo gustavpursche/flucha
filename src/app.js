@@ -1,3 +1,4 @@
+import csvParse from 'csv-parse/lib/sync';
 import React, { useRef, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 
@@ -24,26 +25,11 @@ const parseData = data => {
     return '';
   }
 
-  const lines = data.split('\n');
-
-  return lines.reduce((acc, line) => {
-    const items = line.trim().split(',');
-
-    if (!items) {
-      return acc;
-    }
-
-    let [key, value = ''] = items;
-
-    key = key.trim();
-    value = value.trim();
-
-    if (key && value) {
-      acc[Number(key)] = Number(value);
-    }
-
-    return acc;
-  }, {});
+  return csvParse(data, {
+    cast: false,
+    columns: true,
+    skip_empty_lines: true
+  })[0];
 };
 
 const Step1 = ({ data }) => (
@@ -57,9 +43,8 @@ const Step1 = ({ data }) => (
     <Textarea
       name="data"
       defaultValue={data.data}
-      label="Datensatz"
-      explain="Ein Eintrag pro Zeile"
-      placeholder="2019,100"
+      label="Datensatz (CSV)"
+      explain="Leere Zeilen werden ignoriert, in der ersten Zeile sollten sich die Werte für die x-Achse und in der zweiten Zeile die Werte für die y-Achse befinden"
       rows={10}
       monospace
     />
