@@ -91,8 +91,8 @@ const Snippet = ({ data, parsedData }) => (
   <div className="you-draw-it__chart"
        data-chart-name="${data.name}"
        data-chart-data='${JSON.stringify(parsedData)}'
-       data-chart-median-year=${data.truncateAt}
-       data-chart-y-unit=${data.yUnit} />
+       data-chart-median-year="${data.truncateAt}"
+       data-chart-y-unit="${data.yUnit}" />
 
   <div className="you-draw-it__result">
     <Button disabled>${data.buttonLabel}</Button>
@@ -108,7 +108,7 @@ const Snippet = ({ data, parsedData }) => (
     <code className="code">
 {`
 <script>
-  Array.from(document.quertSelectorAll('.js-chart--you-draw-it'), initChart);
+  Array.from(document.querySelectorAll('.js-chart--you-draw-it'), initChart);
 </script>
 `}
     </code>
