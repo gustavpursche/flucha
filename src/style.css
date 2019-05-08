@@ -82,3 +82,8 @@ body {
 .you-draw-it__result-text {
   display: none;
 }
+
+.you-draw-it__source {
+  margin-top: 1rem;
+  text-align: right;
+}

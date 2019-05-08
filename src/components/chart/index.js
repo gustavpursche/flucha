@@ -5,7 +5,16 @@ import createChart from './chart';
 
 import './style.css';
 
-export default ({ data, name, truncateAt, yUnit, buttonLabel, revealText }) => {
+export default ({
+  data,
+  name,
+  truncateAt,
+  yUnit,
+  buttonLabel,
+  revealText,
+  sourceLabel,
+  sourceLink
+}) => {
   const chart = useRef(null);
 
   useEffect(() => {
@@ -26,6 +35,14 @@ export default ({ data, name, truncateAt, yUnit, buttonLabel, revealText }) => {
         data-chart-median-year={truncateAt}
         data-chart-y-unit={yUnit}
       />
+
+      {sourceLink && (
+        <p className="you-draw-it__source typewriter">
+          <a href={sourceLink} className="lighter">
+            {sourceLabel || 'Quelle'}
+          </a>
+        </p>
+      )}
 
       <div className="you-draw-it__result">
         <Button disabled>{buttonLabel}</Button>

@@ -67,6 +67,18 @@ const Step1 = ({ data }) => (
       label="Button Beschriftung"
       explain="Beschriftung des Buttons, welcher am Ende die realen Daten anzeigt"
     />
+    <Input
+      name="sourceLink"
+      defaultValue={data.sourceLink}
+      label="Link zur Datenquelle"
+      explain="Link zur Datenquelle (optional)"
+    />
+    <Input
+      name="sourceLabel"
+      defaultValue={data.sourceLabel}
+      label="Linktext des Quellenlinks"
+      explain="Beschriftung des Quellenlinks (optional)"
+    />
   </>
 );
 
