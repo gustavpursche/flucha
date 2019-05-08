@@ -1,5 +1,5 @@
 :root {
-  --border-color: rgb(174, 174, 174);
+  --border-color: rgb(150, 150, 150);
 }
 
 *,
@@ -61,4 +61,35 @@ body {
   font-size: 0.9rem;
   font-weight: 300;
   margin-top: 0.35rem;
+}
+
+.divider {
+  background: black;
+  border: 0;
+  height: 3px;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+/* Embed Code Styles */
+
+.you-draw-it__result--is-finished > button {
+  background-color: black;
+}
+
+.you-draw-it__result--result-shown > button {
+  display: none;
+}
+
+.you-draw-it__result--result-shown > .you-draw-it__result-text {
+  display: block;
+}
+
+.you-draw-it__result {
+  text-align: center;
+}
+
+.you-draw-it__result-text {
+  display: none;
 }

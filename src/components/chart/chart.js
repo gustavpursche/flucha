@@ -299,7 +299,7 @@ export default (el, result) => {
 
       if (!state[key].completed && d3.mean(state[key].yourData, ƒ('defined')) == 1) {
           state[key].completed = true;
-          resultSection.node().classList.add('finished');
+          resultSection.node().classList.add('you-draw-it__result--is-finished');
           resultSection.select('button').node().removeAttribute('disabled');
       }
   };
@@ -322,7 +322,7 @@ export default (el, result) => {
 
       setTimeout(() => {
           resultLabel.map(e => e.style('opacity', 1));
-          resultSection.node().classList.add('shown');
+          resultSection.node().classList.add('you-draw-it__result--result-shown');
       }, 700);
   };
 

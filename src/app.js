@@ -71,6 +71,8 @@ const Snippet = ({ data, parsedData }) => (
   <>
     <Chart {...data} data={parsedData} />
 
+    <hr className="divider" />
+
     <h2 className="preview__section-title">1. Artikel vorbereiten</h2>
     <p>Am Anfang des Artikels muss folgender Code <em>einmalig</em> eingefügt werden:</p>
 
