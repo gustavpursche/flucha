@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 
-import Button from '../ui/button';
 import createChart from './chart';
 
 import './style.css';
@@ -46,7 +45,10 @@ export default ({
         )}
 
         <div className="you-draw-it__result">
-          <Button disabled>{buttonLabel}</Button>
+          <button type="button" disabled>
+            {buttonLabel}
+          </button>
+
           <p className="you-draw-it__result-text">{revealText}</p>
         </div>
       </div>
