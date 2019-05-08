@@ -13,13 +13,27 @@ export default el => {
     chartMedianYear,
     chartYUnit
   } = chartEl.dataset;
-  const medianYear = parseInt(chartMedianYear, 10);
+  const medianYear = Number(chartMedianYear);
   const indexedData = JSON.parse(chartData);
   const resultSection = d3.select(el.querySelector('.you-draw-it__result'));
-  const data = Object.keys(indexedData).map(dataKey => ({
-    year: Number(dataKey),
-    value: indexedData[dataKey]
-  }));
+  const data = Object.keys(indexedData)
+    .map(dataKey => {
+      const year = Number(dataKey);
+      const value = indexedData[dataKey];
+      let normalizedValue = value.replace(',', '.');
+
+      normalizedValue = Number(normalizedValue);
+
+      if (!year) {
+        return null;
+      }
+
+      return {
+        year,
+        value: normalizedValue
+      };
+    })
+    .filter(Boolean);
 
   if (!state[key]) {
     state[key] = {};
@@ -101,9 +115,10 @@ export default el => {
   };
 
   const makeLabel = (pos, addClass) => {
+    const { value } = data.find(({ year }) => year === pos);
     const x = c.x(pos);
-    const y = c.y(indexedData[pos]);
-    const text = formatValue(indexedData[pos]);
+    const y = c.y(value);
+    const text = formatValue(value);
 
     const label = c.labels
       .append('div')
@@ -111,6 +126,7 @@ export default el => {
       .classed(addClass, true)
       .style('left', `${x}px`)
       .style('top', `${y}px`);
+
     label.append('span').text(text);
 
     if (pos === minYear && isMobile) {
@@ -185,11 +201,9 @@ export default el => {
   };
 
   // configure scales
+  const { value } = data.find(({ year }) => year === medianYear);
   const graphMinY = Math.min(minY, 0);
-  const graphMaxY = Math.max(
-    indexedData[medianYear] * 2,
-    maxY + (maxY - graphMinY)
-  );
+  const graphMaxY = Math.max(value * 2, maxY + (maxY - graphMinY));
   c.x = d3.scaleLinear().range([0, c.width]);
   c.x.domain([minYear, maxYear]);
   c.y = d3.scaleLinear().range([c.height, 0]);
@@ -299,7 +313,7 @@ export default el => {
     state[key].yourData = data
       .map(d => ({
         year: d.year,
-        value: indexedData[medianYear],
+        value: data.find(({ year }) => year === medianYear).value,
         defined: false
       }))
       .filter(d => {
