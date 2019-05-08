@@ -25,28 +25,30 @@ export default ({
 
   return (
     <div
-      className="media media-element-container media-default you-draw-it js-chart--you-draw-it"
+      className="articleBlock articleBlockStandard you-draw-it js-chart--you-draw-it"
       ref={chart}
     >
-      <div
-        className="you-draw-it__chart"
-        data-chart-name={name}
-        data-chart-data={JSON.stringify(data)}
-        data-chart-median-year={truncateAt}
-        data-chart-y-unit={yUnit}
-      />
+      <div>
+        <div
+          className="you-draw-it__chart"
+          data-chart-name={name}
+          data-chart-data={JSON.stringify(data)}
+          data-chart-median-year={truncateAt}
+          data-chart-y-unit={yUnit}
+        />
 
-      {sourceLink && (
-        <p className="you-draw-it__source typewriter">
-          <a href={sourceLink} className="lighter">
-            {sourceLabel || 'Quelle'}
-          </a>
-        </p>
-      )}
+        {sourceLink && (
+          <p className="you-draw-it__source typewriter">
+            <a href={sourceLink} className="lighter">
+              {sourceLabel || 'Quelle'}
+            </a>
+          </p>
+        )}
 
-      <div className="you-draw-it__result">
-        <Button disabled>{buttonLabel}</Button>
-        <p className="you-draw-it__result-text">{revealText}</p>
+        <div className="you-draw-it__result">
+          <Button disabled>{buttonLabel}</Button>
+          <p className="you-draw-it__result-text">{revealText}</p>
+        </div>
       </div>
     </div>
   );
