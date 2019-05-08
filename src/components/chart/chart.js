@@ -1,13 +1,13 @@
 import * as d3 from 'd3';
 
-const state = {};
-
-export default (el, result) => {
-  const sel = d3.select(el);
-  const { dataset } = el;
-  const { chartData, chartName: key, chartMedianYear, chartYUnit } = dataset;
+export default el => {
+  const state = {};
+  const chartEl = el.querySelector('.you-draw-it__chart');
+  const sel = d3.select(chartEl);
+  const { chartData, chartName: key, chartMedianYear, chartYUnit } = chartEl.dataset;
   const medianYear = parseInt(chartMedianYear, 10);
   const indexedData = JSON.parse(chartData);
+  const resultSection = d3.select(el.querySelector('.you-draw-it__result'));
   const data = Object.keys(indexedData).map(key => {
       return {
           year: Number(key),
@@ -245,8 +245,6 @@ export default (el, result) => {
               return d.year >= medianYear
           });
   }
-
-  const resultSection = d3.select(result);
 
   const drawUserLine = function() {
       userSel.attr('d', userLine.defined(ƒ('defined'))(state[key].yourData));
