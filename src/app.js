@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import ReactDOMServer from 'react-dom/server';
 
 import Button from './components/ui/button';
 import Chart from './components/chart';
@@ -122,20 +123,9 @@ const Snippet = ({ data, parsedData }) => (
     </p>
 
     <code className="code">
-      {`
-<div class="media media-element-container media-default you-draw-it js-chart--you-draw-it">
-  <div class="you-draw-it__chart"
-       data-chart-name="${data.name}"
-       data-chart-data='${JSON.stringify(parsedData)}'
-       data-chart-median-year="${data.truncateAt}"
-       data-chart-y-unit="${data.yUnit}"></div>
-
-  <div class="you-draw-it__result">
-    <button class="you-draw-it__button" disabled>${data.buttonLabel}</button>
-    <p class="you-draw-it__result-text">${data.revealText}</p>
-  </div>
-</div>
-`}
+      {ReactDOMServer.renderToStaticMarkup(
+        <Chart {...data} data={parsedData} />
+      )}
     </code>
 
     <h2 className="preview__section-title">3. Artikel abschließen</h2>
@@ -147,7 +137,9 @@ const Snippet = ({ data, parsedData }) => (
     <code className="code">
       {`
 <script>
-  Array.from(document.querySelectorAll('.js-chart--you-draw-it'), youDrawIt);
+  const youDrawItDrawAllCharts = () => Array.from(document.querySelectorAll('.js-chart--you-draw-it'), youDrawIt);
+  window.addEventListener('resize', youDrawItDrawAllCharts);
+  youDrawItDrawAllCharts();
 </script>
 `}
     </code>
