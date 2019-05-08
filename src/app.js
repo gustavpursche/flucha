@@ -9,9 +9,9 @@ import Textarea from './components/ui/textarea';
 import './style.css';
 
 const formData = form => {
-  const formData = new FormData(form);
+  const data = new FormData(form);
 
-  return Array.from(formData.entries()).reduce((acc, [key, value]) => {
+  return Array.from(data.entries()).reduce((acc, [key, value]) => {
     acc[key] = value;
     return acc;
   }, {});
@@ -46,18 +46,49 @@ const parseData = data => {
 
 const Step1 = ({ data }) => (
   <>
-    <Input name="name" defaultValue={data.name} label="Name des Datensets" explain="Der Name sollte einmalig pro Artikel vorkommen" />
-    <Textarea name="data" defaultValue={data.data} label="Daten" explain="Ein Eintrag pro Zeile" placeholder="2019,100" rows={10} monospace />
-    <Input name="yUnit" defaultValue={data.yUnit} label="Einheit der Y-Achse" explain="Optional" />
-    <Textarea name="revealText" defaultValue={data.revealText} label="Text" explain="Text, der angezeigt werden soll, nachdem das Diagramm fertig gezeichnet wurde" rows={5} />
-    <Input name="buttonLabel" defaultValue={data.buttonLabel} label="Button Beschriftung" explain="Beschriftung des Buttons, welcher am Ende die realen Daten anzeigt" />
+    <Input
+      name="name"
+      defaultValue={data.name}
+      label="Name des Datensets"
+      explain="Der Name sollte einmalig pro Artikel vorkommen"
+    />
+    <Textarea
+      name="data"
+      defaultValue={data.data}
+      label="Daten"
+      explain="Ein Eintrag pro Zeile"
+      placeholder="2019,100"
+      rows={10}
+      monospace
+    />
+    <Input
+      name="yUnit"
+      defaultValue={data.yUnit}
+      label="Einheit der Y-Achse"
+      explain="Optional"
+    />
+    <Textarea
+      name="revealText"
+      defaultValue={data.revealText}
+      label="Text"
+      explain="Text, der angezeigt werden soll, nachdem das Diagramm fertig gezeichnet wurde"
+      rows={5}
+    />
+    <Input
+      name="buttonLabel"
+      defaultValue={data.buttonLabel}
+      label="Button Beschriftung"
+      explain="Beschriftung des Buttons, welcher am Ende die realen Daten anzeigt"
+    />
   </>
 );
 
 const Step2 = ({ data, selected }) => (
   <Select name="truncateAt" required label="Diagramm sichtbar bis (x Achse)">
     {Object.entries(data).map(([value]) => (
-      <option value={value} selected={value === selected}>{value}</option>
+      <option value={value} selected={value === selected}>
+        {value}
+      </option>
     ))}
   </Select>
 );
@@ -69,19 +100,25 @@ const Snippet = ({ data, parsedData }) => (
     <hr className="divider" />
 
     <h2 className="preview__section-title">1. Artikel vorbereiten</h2>
-    <p>Am Anfang des Artikels muss folgender Code <em>einmalig</em> eingefügt werden:</p>
+    <p>
+      Am Anfang des Artikels muss folgender Code <em>einmalig</em> eingefügt
+      werden:
+    </p>
 
     <code className="code">
-{`
+      {`
 <script src="/sites/all/libraries/d3/d3.min.js"></script>
 `}
     </code>
 
     <h2 className="preview__section-title">2. Diagramm(e) hinzufügen</h2>
-    <p>Der folgende Code muss an der Stelle eingefügt werden, an dem das Diagramm angezeigt werden soll:</p>
+    <p>
+      Der folgende Code muss an der Stelle eingefügt werden, an dem das Diagramm
+      angezeigt werden soll:
+    </p>
 
     <code className="code">
-{`
+      {`
 <div class="media media-element-container media-default you-draw-it js-chart--you-draw-it">
   <div className="you-draw-it__chart"
        data-chart-name="${data.name}"
@@ -98,16 +135,18 @@ const Snippet = ({ data, parsedData }) => (
     </code>
 
     <h2 className="preview__section-title">3. Artikel abschließen</h2>
-    <p>Am Ende des Artikels muss folgender Code <em>einmalig</em> eingefügt werden:</p>
+    <p>
+      Am Ende des Artikels muss folgender Code <em>einmalig</em> eingefügt
+      werden:
+    </p>
 
     <code className="code">
-{`
+      {`
 <script>
   Array.from(document.querySelectorAll('.js-chart--you-draw-it'), initChart);
 </script>
 `}
     </code>
-
   </>
 );
 
@@ -124,30 +163,49 @@ export default () => {
         {step === 0 && (
           <>
             <Step1 data={dataset} />
-            <Button type="button" onClick={() => {
-              setStep(1);
-              setData(state => ({
-                ...state,
-                ...formData(form.current)
-              }));
-            }}>Nächster Schritt</Button>
+            <Button
+              type="button"
+              onClick={() => {
+                setStep(1);
+                setData(state => ({
+                  ...state,
+                  ...formData(form.current)
+                }));
+              }}
+            >
+              Nächster Schritt
+            </Button>
           </>
         )}
 
         {step === 1 && (
           <>
-            <Step2 data={parseData(dataset.data)} selected={dataset.truncateAt} />
-            <Button type="button" onClick={() => {
-              setStep(2);
-              setData(state => ({
-                ...state,
-                ...formData(form.current)
-              }));
-            }}>Vorschau erzeugen</Button>
+            <Step2
+              data={parseData(dataset.data)}
+              selected={dataset.truncateAt}
+            />
+            <Button
+              type="button"
+              onClick={() => {
+                setStep(2);
+                setData(state => ({
+                  ...state,
+                  ...formData(form.current)
+                }));
+              }}
+            >
+              Vorschau erzeugen
+            </Button>
 
-            <Button type="button" secondary onClick={() => {
-              setStep(0);
-            }}>Zurück</Button>
+            <Button
+              type="button"
+              secondary
+              onClick={() => {
+                setStep(0);
+              }}
+            >
+              Zurück
+            </Button>
           </>
         )}
 
@@ -155,12 +213,18 @@ export default () => {
           <>
             <Snippet data={dataset} parsedData={parseData(dataset.data)} />
 
-            <Button type="button" secondary onClick={() => {
-              setStep(1);
-            }}>Zurück</Button>
+            <Button
+              type="button"
+              secondary
+              onClick={() => {
+                setStep(1);
+              }}
+            >
+              Zurück
+            </Button>
           </>
         )}
       </form>
     </div>
   );
-}
+};

@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 import React from 'react';
 
 import './style.css';
@@ -5,12 +8,8 @@ import './style.css';
 export default ({ children, text, explain = false, ...attributes }) => (
   <label className="label" {...attributes}>
     <span className="label__text">{text}</span>
-    {explain && (
-      <small className="label__explain">{explain}</small>
-    )}
+    {explain && <small className="label__explain">{explain}</small>}
 
-    <div className="label__children-container">
-      {children}
-    </div>
+    <div className="label__children-container">{children}</div>
   </label>
 );
