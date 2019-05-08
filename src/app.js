@@ -71,12 +71,23 @@ const Step1 = ({ data }) => (
 );
 
 const Step2 = ({ data, selected }) => (
-  <Select name="truncateAt" required label="Diagramm sichtbar bis (x Achse)">
-    {Object.entries(data).map(([value]) => (
-      <option value={value} selected={value === selected}>
-        {value}
-      </option>
-    ))}
+  <Select
+    name="truncateAt"
+    defaultValue={selected}
+    required
+    label="Diagramm sichtbar bis (x Achse)"
+  >
+    {Object.keys(data).map(year => {
+      if (!year) {
+        return null;
+      }
+
+      return (
+        <option key={year} value={year}>
+          {year}
+        </option>
+      );
+    })}
   </Select>
 );
 
