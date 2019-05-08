@@ -1,0 +1,12 @@
+.code {
+  background: rgb(248, 248, 248);
+  border: 1px solid rgb(240, 240, 240);
+  border-radius: 0.35rem;
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  margin: 1.5rem 0;
+  overflow-y: scroll;
+  padding: 0.75rem;
+  white-space: pre;
+}

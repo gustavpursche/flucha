@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import Button from './components/ui/button';
 import Chart from './components/chart';
+import Code from './components/ui/code';
 import Input from './components/ui/input';
 import Select from './components/ui/select';
 import Textarea from './components/ui/textarea';
@@ -106,7 +107,7 @@ const Snippet = ({ data, parsedData }) => (
       werden:
     </p>
 
-    <code className="code">
+    <Code>
       {`
 <script src="/sites/all/libraries/d3/d3.min.js"></script>
 <style type="text/css"></style>
@@ -114,7 +115,7 @@ const Snippet = ({ data, parsedData }) => (
   const youDrawIt = el => {};
 </script>
 `}
-    </code>
+    </Code>
 
     <h2 className="preview__section-title">2. Diagramm(e) hinzufügen</h2>
     <p>
@@ -122,11 +123,11 @@ const Snippet = ({ data, parsedData }) => (
       angezeigt werden soll:
     </p>
 
-    <code className="code">
+    <Code>
       {ReactDOMServer.renderToStaticMarkup(
         <Chart {...data} data={parsedData} />
       )}
-    </code>
+    </Code>
 
     <h2 className="preview__section-title">3. Artikel abschließen</h2>
     <p>
@@ -134,7 +135,7 @@ const Snippet = ({ data, parsedData }) => (
       werden:
     </p>
 
-    <code className="code">
+    <Code>
       {`
 <script>
   const youDrawItDrawAllCharts = () => Array.from(document.querySelectorAll('.js-chart--you-draw-it'), youDrawIt);
@@ -142,7 +143,7 @@ const Snippet = ({ data, parsedData }) => (
   youDrawItDrawAllCharts();
 </script>
 `}
-    </code>
+    </Code>
   </>
 );
 
