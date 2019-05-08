@@ -5,7 +5,7 @@
   "dependencies": {
     "babel-eslint": "^10.0.1",
     "csv-parse": "^4.4.1",
-    "d3": "^4.13.0",
+    "d3": "^5.9.2",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.2.0",
@@ -18,7 +18,7 @@
     "prettier": "^1.17.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.0"
+    "react-scripts": "^3.0.1"
   },
   "scripts": {
     "develop": "react-scripts start",
