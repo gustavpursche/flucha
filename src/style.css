@@ -48,6 +48,7 @@ body {
   line-height: 1.2;
   margin: 1.5rem 0;
   padding: 0.75rem;
+  white-space: pre;
 }
 
 .preview__section-title {

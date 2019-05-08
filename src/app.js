@@ -87,11 +87,16 @@ const Snippet = ({ data, parsedData }) => (
 
     <code className="code">
 {`
-<div class="media media-element-container media-default">
-  <div class="js-chart--you-draw-it" data-chart-name="${data.name}" data-chart-data='${JSON.stringify(parsedData)}' data-chart-button-label="${data.buttonLabel}" data-chart-truncate="${data.truncateAt}"></div>
-  <div>
-    <p>${data.revealText}</p>
-    <button type="button" disabled>${data.buttonLabel}</button>
+<div class="media media-element-container media-default you-draw-it js-chart--you-draw-it">
+  <div className="you-draw-it__chart"
+       data-chart-name="${data.name}"
+       data-chart-data='${JSON.stringify(parsedData)}'
+       data-chart-median-year=${data.truncateAt}
+       data-chart-y-unit=${data.yUnit} />
+
+  <div className="you-draw-it__result">
+    <Button disabled>${data.buttonLabel}</Button>
+    <p className="you-draw-it__result-text">${data.revealText}</p>
   </div>
 </div>
 `}
