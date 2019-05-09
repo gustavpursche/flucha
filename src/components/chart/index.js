@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from 'react';
 
 import createChart from './chart';
 
-import './style.css';
-
 export default ({
   data,
   name,
