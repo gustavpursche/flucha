@@ -9,6 +9,8 @@ import Input from './components/ui/input';
 import Select from './components/ui/select';
 import Textarea from './components/ui/textarea';
 
+import { embedStyles } from './components/chart/embed-style';
+
 import './style.css';
 
 const formData = form => {
@@ -118,7 +120,10 @@ const Snippet = ({ data, parsedData }) => (
     <Code>
       {`
 <script src="/sites/all/libraries/d3/d3.min.js"></script>
-<style type="text/css"></style>
+<style type="text/css">${embedStyles.replace(
+        /(\r\n|\n|\r|\s{2,})/gm,
+        ''
+      )}</style>
 <script>
   const youDrawIt = el => {};
 </script>
@@ -162,6 +167,8 @@ export default () => {
 
   return (
     <div className="app">
+      <style>{embedStyles}</style>
+
       <form ref={form}>
         <h2 className="steps">Schritt {step + 1} / 3</h2>
 
