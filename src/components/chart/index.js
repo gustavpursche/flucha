@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 
-import createChart from './chart';
-
 export default ({
   data,
   name,
@@ -10,13 +8,14 @@ export default ({
   buttonLabel,
   revealText,
   sourceLabel,
-  sourceLink
+  sourceLink,
+  drawChartFn
 }) => {
   const chart = useRef(null);
 
   useEffect(() => {
-    if (chart && chart.current) {
-      createChart(chart.current);
+    if (typeof window !== 'undefined' && chart && chart.current) {
+      drawChartFn(chart.current);
     }
   });
 
@@ -43,11 +42,15 @@ export default ({
         )}
 
         <div className="you-draw-it__result">
-          <button type="button" disabled>
-            {buttonLabel}
-          </button>
+          {buttonLabel && revealText && (
+            <button type="button" disabled>
+              {buttonLabel}
+            </button>
+          )}
 
-          <p className="you-draw-it__result-text">{revealText}</p>
+          {revealText && (
+            <p className="you-draw-it__result-text">{revealText}</p>
+          )}
         </div>
       </div>
     </div>
