@@ -78,7 +78,7 @@ export const embedStyles = `
     position: relative;
     margin-top: -43px;
     left: -50%;
-    padding: 5px 15px;
+    padding: 5px 10px;
     color: white;
     display: block;
     text-align: center;

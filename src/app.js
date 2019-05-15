@@ -328,13 +328,16 @@ const drawChart = el => {
     .append('rect')
     .attr('width', c.x(medianYear))
     .attr('height', c.height);
+
   const resultLabel = charts[charts.length - 1].slice(1, 3);
+
   resultChart
     .attr('clip-path', `url(#result-clip-${key})`)
     .append('rect')
     .attr('width', c.width)
     .attr('height', c.height)
     .attr('fill', 'none');
+
   resultLabel.map(e => e.style('opacity', 0));
 
   /**
@@ -361,16 +364,16 @@ const drawChart = el => {
       });
   }
 
-  const drawUserLine = () => {
+  const drawUserLine = value => {
     userSel.attr('d', userLine.defined(ƒ('defined'))(state[key].yourData));
 
     const d = state[key].yourData[state[key].yourData.length - 1];
+    const yourResult = c.labels.selectAll('.your-result').data([d]);
+    const text = formatValue(value, 2) || (r => formatValue(r.value, 2));
 
-    if (!d.defined) {
+    if (!value) {
       return;
     }
-
-    const yourResult = c.labels.selectAll('.your-result').data([d]);
 
     yourResult
       .enter()
@@ -379,10 +382,10 @@ const drawChart = el => {
       .classed('edge-right', isMobile)
       .merge(yourResult)
       .style('left', () => `${c.x(maxYear)}px`)
-      .style('top', r => `${c.y(r.value)}px`)
+      .style('top', r => `${c.y(value || r.value)}px`)
       .html('')
       .append('span')
-      .text(r => formatValue(r.value, 2));
+      .text(text);
   };
 
   drawUserLine();
@@ -391,8 +394,6 @@ const drawChart = el => {
     if (state[key].resultShown) {
       return;
     }
-
-    sel.node().classList.add('drawn');
 
     const pos = window.d3.mouse(c.svg.node());
     const year = clamp(medianYear, maxYear, c.x.invert(pos[0]));
@@ -403,13 +404,14 @@ const drawChart = el => {
         if (Math.abs(d.year - year) < 0.5) {
           d.value = value;
         }
+
         if (d.year - year < 0.5) {
           d.defined = true;
         }
       }
     });
 
-    drawUserLine();
+    drawUserLine(value);
 
     if (
       !state[key].completed &&
