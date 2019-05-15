@@ -209,7 +209,7 @@ const drawChart = el => {
     left: isMobile ? 20 : 50
   };
   const width = sel.node().offsetWidth;
-  const height = 350;
+  const height = 400;
   const c = {
     width: width - (margin.left + margin.right),
     height: height - (margin.top + margin.bottom)
@@ -252,7 +252,7 @@ const drawChart = el => {
     .call(
       window.d3
         .axisLeft(c.y)
-        .tickValues(c.y.ticks(6))
+        .tickValues(c.y.ticks(10))
         .tickFormat('')
         .tickSize(-c.width)
     );
