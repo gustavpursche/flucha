@@ -395,6 +395,8 @@ const drawChart = el => {
       return;
     }
 
+    c.controls.attr('style', 'display: none;');
+
     const pos = window.d3.mouse(c.svg.node());
     const year = clamp(medianYear, maxYear, c.x.invert(pos[0]));
     const value = clamp(c.y.domain()[0], c.y.domain()[1], c.y.invert(pos[1]));
