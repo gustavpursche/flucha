@@ -152,6 +152,7 @@ export const embedStyles = `
     align-items: center;
     display: flex;
     justify-content: center;
+    opacity: .5;
     pointer-events: none;
     position: absolute;
   }

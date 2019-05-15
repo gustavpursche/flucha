@@ -200,9 +200,6 @@ const drawChart = el => {
 
   const clamp = (a, b, c) => Math.max(a, Math.min(b, c));
 
-  // make visual area empty
-  sel.html('');
-
   const margin = {
     top: 50,
     right: isMobile ? 20 : 50,
@@ -374,6 +371,7 @@ const drawChart = el => {
     }
 
     const yourResult = c.labels.selectAll('.your-result').data([d]);
+
     yourResult
       .enter()
       .append('div')
