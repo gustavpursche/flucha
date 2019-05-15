@@ -101,11 +101,11 @@ export const embedStyles = `
   }
 
   .you-draw-it__chart .data-label.red span {
-    background-color: red;
+    background-color: black;
   }
 
   .you-draw-it__chart .data-label.your-result span {
-    background-color: blue;
+    background-color: black;
   }
 
   .you-draw-it__chart .your-line {
