@@ -203,7 +203,7 @@ const drawChart = el => {
   sel.html('');
 
   const margin = {
-    top: 20,
+    top: 50,
     right: isMobile ? 20 : 50,
     bottom: 20,
     left: isMobile ? 20 : 50
@@ -218,7 +218,12 @@ const drawChart = el => {
   // configure scales
   const { value } = data.find(({ year }) => year === medianYear);
   const graphMinY = Math.min(minY, 0);
-  const graphMaxY = Math.max(value * 2, maxY + (maxY - graphMinY));
+  let graphMaxY = Math.max(value, maxY + (maxY - graphMinY));
+
+  if (chartYUnit === '%') {
+    graphMaxY = 100;
+  }
+
   c.x = window.d3.scaleLinear().range([0, c.width]);
   c.x.domain([minYear, maxYear]);
   c.y = window.d3.scaleLinear().range([c.height, 0]);
