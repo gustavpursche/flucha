@@ -1,6 +1,7 @@
 import csvParse from 'csv-parse/lib/sync';
 import React, { useRef, useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
+import Terser from 'terser';
 
 import Button from './components/ui/button';
 import Chart from './components/chart';
@@ -540,7 +541,7 @@ const Snippet = ({ data, parsedData }) => (
         ''
       )}</style>
 <script>
-  const youDrawIt = ${drawChart.toString()};
+  ${Terser.minify(`var youDrawIt = ${drawChart.toString()}`).code};
 </script>
 `}
     </Code>
