@@ -81,10 +81,14 @@ export const embedStyles = `
     padding: 5px 10px;
     color: white;
     display: block;
-    text-align: center;
-    line-height: 16px;
-    white-space: nowrap;
     font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .you-draw-it__chart .data-label.your-result span {
+    left: 0;
   }
 
   .you-draw-it__chart .data-label.edge-left span {
@@ -105,7 +109,7 @@ export const embedStyles = `
   }
 
   .you-draw-it__chart .data-label.your-result span {
-    background-color: black;
+    color: black;
   }
 
   .you-draw-it__chart .your-line {
