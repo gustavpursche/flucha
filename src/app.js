@@ -113,6 +113,7 @@ const drawChart = el => {
     // null auf y-achse
     c.axis
       .append('text')
+      .attr('class', 'y axis')
       .text('0')
       .attr('transform', `translate(-15, ${c.y(0) + 5})`);
   };
@@ -541,7 +542,7 @@ const Snippet = ({ data, parsedData }) => (
         ''
       )}</style>
 <script>
-  ${Terser.minify(`var youDrawIt = ${drawChart.toString()}`).code};
+  ${Terser.minify(`const youDrawIt = ${drawChart.toString()}`).code};
 </script>
 `}
     </Code>

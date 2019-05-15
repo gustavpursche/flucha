@@ -139,6 +139,7 @@ export const embedStyles = `
     opacity: .5;
   }
 
+  .you-draw-it__chart .axis,
   .you-draw-it__chart .axis text {
     font-size: 10px;
   }
