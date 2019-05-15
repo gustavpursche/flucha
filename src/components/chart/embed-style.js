@@ -147,4 +147,12 @@ export const embedStyles = `
   .you-draw-it__chart .dots {
     fill: black;
   }
+
+  .you-draw-it__chart .controls {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+  }
 `;

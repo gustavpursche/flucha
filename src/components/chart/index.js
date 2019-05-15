@@ -5,6 +5,7 @@ export default ({
   name,
   truncateAt,
   yUnit,
+  draggableLabel,
   buttonLabel,
   revealText,
   sourceLabel,
@@ -31,6 +32,7 @@ export default ({
           data-chart-data={JSON.stringify(data)}
           data-chart-median-year={truncateAt}
           data-chart-y-unit={yUnit}
+          data-chart-draggable-label={draggableLabel}
         />
 
         {sourceLink && (

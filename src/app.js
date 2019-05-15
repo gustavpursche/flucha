@@ -22,7 +22,8 @@ const drawChart = el => {
     chartData,
     chartName: key,
     chartMedianYear,
-    chartYUnit
+    chartYUnit,
+    chartDraggableLabel
   } = chartEl.dataset;
   const medianYear = Number(chartMedianYear);
   const indexedData = JSON.parse(chartData);
@@ -224,10 +225,15 @@ const drawChart = el => {
     graphMaxY = 100;
   }
 
-  c.x = window.d3.scaleLinear().range([0, c.width]);
-  c.x.domain([minYear, maxYear]);
-  c.y = window.d3.scaleLinear().range([c.height, 0]);
-  c.y.domain([graphMinY, graphMaxY]);
+  c.x = window.d3
+    .scaleLinear()
+    .range([0, c.width])
+    .domain([minYear, maxYear]);
+
+  c.y = window.d3
+    .scaleLinear()
+    .range([c.height, 0])
+    .domain([graphMinY, graphMaxY]);
 
   c.svg = sel
     .append('svg')
@@ -296,6 +302,19 @@ const drawChart = el => {
   // configure axes
   c.xAxis = window.d3.axisBottom().scale(c.x);
   c.xAxis.tickFormat(d => `'${String(d).substr(2)}`).ticks(maxYear - minYear);
+
+  if (chartDraggableLabel) {
+    c.controls = sel
+      .append('div')
+      .attr('class', 'controls')
+      .call(applyMargin)
+      .style('padding-left', `${c.x(medianYear)}px`);
+
+    c.controls
+      .append('div')
+      .attr('class', 'box')
+      .text(chartDraggableLabel);
+  }
 
   drawAxis(c);
 
@@ -477,6 +496,11 @@ const Step1 = ({ data }) => (
       defaultValue={data.yUnit}
       label="Einheit der Y-Achse"
       explain="Optional"
+    />
+    <Input
+      name="draggableLabel"
+      defaultValue={data.draggableLabel || 'Zeichne die Linie weiter'}
+      label="Beschriftung des Draggable Bereichs"
     />
     <Textarea
       name="revealText"
