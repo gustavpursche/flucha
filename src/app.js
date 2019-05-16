@@ -202,7 +202,7 @@ const drawChart = el => {
 
   const margin = {
     top: 50,
-    right: isMobile ? 40 : 70,
+    right: isMobile ? 60 : 70,
     bottom: 20,
     left: isMobile ? 20 : 50
   };
