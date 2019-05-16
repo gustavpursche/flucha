@@ -58,6 +58,7 @@ export const embedStyles = `
   }
 
   .you-draw-it__chart {
+    margin-left: -20px;
     position: relative;
   }
 
@@ -96,7 +97,6 @@ export const embedStyles = `
   }
 
   .you-draw-it__chart .data-label.your-result span {
-    left: 0;
     margin-top: -10px;
   }
 
@@ -118,6 +118,7 @@ export const embedStyles = `
   }
 
   .you-draw-it__chart .data-label.your-result span {
+    background-color: white;
     color: black;
   }
 

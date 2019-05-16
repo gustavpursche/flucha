@@ -201,10 +201,10 @@ const drawChart = el => {
   const clamp = (a, b, c) => Math.max(a, Math.min(b, c));
 
   const margin = {
-    top: 50,
-    right: isMobile ? 60 : 70,
+    top: 0,
+    right: 60,
     bottom: 20,
-    left: isMobile ? 20 : 50
+    left: 20
   };
   const width = sel.node().offsetWidth;
   const height = 400;
