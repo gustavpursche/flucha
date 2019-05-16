@@ -38,7 +38,7 @@ export default ({
         {sourceLink && (
           <p className="you-draw-it__source typewriter">
             <a href={sourceLink} className="lighter">
-              {sourceLabel || 'Quelle'}
+              Quelle {sourceLabel ? `: ${sourceLabel}` : ''}
             </a>
           </p>
         )}
