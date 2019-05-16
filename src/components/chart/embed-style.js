@@ -58,7 +58,7 @@ export const embedStyles = `
   }
 
   .you-draw-it__chart {
-    margin-left: -20px;
+    margin-left: -5px;
     position: relative;
   }
 
