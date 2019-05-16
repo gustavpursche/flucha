@@ -55,6 +55,10 @@ export const embedStyles = `
     text-align: right;
   }
 
+  .you-draw-it__chart {
+    position: relative;
+  }
+
   .you-draw-it__chart .labels {
     position: absolute;
     pointer-events: none;
@@ -75,14 +79,16 @@ export const embedStyles = `
   }
 
   .you-draw-it__chart .data-label span {
-    position: relative;
-    margin-top: -43px;
-    left: -50%;
-    padding: 5px 10px;
     color: white;
     display: block;
+    font-family: AkzidenzGroteskMedium, sans-serif;
+    font-size: 0.85rem;
     font-weight: bold;
+    left: -50%;
     line-height: 1;
+    margin-top: -43px;
+    padding: 5px 10px;
+    position: relative;
     text-align: center;
     white-space: nowrap;
   }
@@ -155,8 +161,9 @@ export const embedStyles = `
   .you-draw-it__chart .controls {
     align-items: center;
     display: flex;
+    font-family: AkzidenzGroteskMedium, sans-serif;
+    font-size: 1rem;
     justify-content: center;
-    opacity: .5;
     pointer-events: none;
     position: absolute;
   }
