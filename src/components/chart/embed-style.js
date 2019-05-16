@@ -2,7 +2,7 @@
 
 export const embedStyles = `
   .you-draw-it {
-    margin: 1.5rem 0;
+    margin: 1.5rem 0 2.5rem 0;
     position: relative;
     overflow: hidden;
   }
@@ -35,7 +35,7 @@ export const embedStyles = `
 
   .you-draw-it__result > button[disabled] {
     background-color: rgb(180, 180, 180);
-    color: currentColor;
+    color: rgb(105, 105, 105);
   }
 
   .you-draw-it__result--result-shown > button {
