@@ -42,10 +42,12 @@ export const embedStyles = `
     display: none;
   }
 
+  .you-draw-it__result--result-shown > .you-draw-it__source,
   .you-draw-it__result--result-shown > .you-draw-it__result-text {
     display: block;
   }
 
+  .you-draw-it__source,
   .you-draw-it__result-text {
     display: none;
   }
@@ -95,6 +97,7 @@ export const embedStyles = `
 
   .you-draw-it__chart .data-label.your-result span {
     left: 0;
+    margin-top: -10px;
   }
 
   .you-draw-it__chart .data-label.edge-left span {
@@ -119,7 +122,7 @@ export const embedStyles = `
   }
 
   .you-draw-it__chart .your-line {
-    stroke: black;
+    stroke: rgb(0,255,255);
     stroke-width: 4;
     stroke-dasharray: 1 7;
     stroke-linecap: round;
@@ -142,7 +145,7 @@ export const embedStyles = `
   }
 
   .you-draw-it__chart .line.red {
-    stroke: black;
+    stroke: rgb(255,0,255);
   }
 
   .you-draw-it__chart .axis {

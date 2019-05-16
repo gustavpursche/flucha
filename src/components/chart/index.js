@@ -35,15 +35,15 @@ export default ({
           data-chart-draggable-label={draggableLabel}
         />
 
-        {sourceLink && (
-          <p className="you-draw-it__source typewriter">
-            <a href={sourceLink} className="lighter">
-              Quelle {sourceLabel ? `: ${sourceLabel}` : ''}
-            </a>
-          </p>
-        )}
-
         <div className="you-draw-it__result">
+          {sourceLink && (
+            <p className="you-draw-it__source typewriter">
+              <a href={sourceLink} className="lighter">
+                Quelle {sourceLabel ? `: ${sourceLabel}` : ''}
+              </a>
+            </p>
+          )}
+
           {buttonLabel && revealText && (
             <button type="button" disabled>
               {buttonLabel}
