@@ -209,7 +209,7 @@ const drawChart = el => {
     left: 20
   };
   const width = sel.node().offsetWidth;
-  const height = 400;
+  const height = isMobile ? 300 : 400;
   const c = {
     width: width - (margin.left + margin.right),
     height: height - (margin.top + margin.bottom)
