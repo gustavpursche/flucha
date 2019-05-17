@@ -200,6 +200,8 @@ const drawChart = el => {
 
   const clamp = (a, b, c) => Math.max(a, Math.min(b, c));
 
+  sel.html('');
+
   const margin = {
     top: 0,
     right: 60,
