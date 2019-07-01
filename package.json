@@ -19,7 +19,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1",
-    "terser": "^3.17.0"
+    "terser": "^4.0.2"
   },
   "scripts": {
     "develop": "react-scripts start",
